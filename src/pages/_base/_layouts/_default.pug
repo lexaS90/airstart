@@ -1,0 +1,37 @@
+include ../../_tools/_data
+include ../../_tools/_mixins
+
+-
+		page = {
+				title: '',
+				bodyClass: 'not-home',
+		}
+
+block vars
+
+doctype html
+html(lang="ru")
+		head
+				
+				
+				meta(charset='utf-8')
+				title= page.title
+				meta(http-equiv='x-ua-compatible', content='ie=edge')
+				meta(name='description', content='')
+				meta(name='viewport', content='width=device-width, initial-scale=1')
+
+				link(rel='shortcut icon', href='assets/images/favicon/favicon.ico', type='image/x-icon')
+				link(rel='apple-touch-icon', href='assets/images/favicon/apple-touch-icon.png')
+				
+				link(rel='stylesheet', type='text/css', href='assets/css/app.min.css')
+
+		body(class= page.bodyClass)
+				.page-wrapper
+						
+						include ../_includes/_header
+						
+						block content
+
+						include ../_includes/_footer
+				
+				script(src="assets/js/app.min.js")

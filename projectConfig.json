@@ -1,0 +1,33 @@
+{
+    "blocks": {},
+    "path": {
+        "src": {
+            "srcPath": "./src",
+            "blocksDirName": "/blocks",
+            "html": [
+              "/pages/**/*.pug"
+            ],
+            "style": [
+                "/style/app.scss"
+						],
+						"script": [
+							"/script/app.js"
+						],
+						"image": [
+							"/images/**/*.*"
+						],
+						"font": [
+							"/fonts/**/*.*"
+						]
+        },
+        "dist": {
+            "distPath": "./dist",
+            "html": "/",
+						"style": "/assets/css/",
+						"script": "/assets/js/",
+						"image": "/assets/images/",
+						"font": "/assets/fonts/"
+        },
+        "watch": {}
+    }
+}

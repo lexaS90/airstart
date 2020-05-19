@@ -1,0 +1,21 @@
+img.lazy{
+	width: 100%;
+	display: block;
+}
+
+.has-danger{
+
+	.invalid-feedback{
+		display: block;
+	}
+
+	.form-control{
+		@extend .is-invalid;
+	}
+}
+
+.has-success{
+	.form-control{
+		@extend .is-valid;
+	}
+}

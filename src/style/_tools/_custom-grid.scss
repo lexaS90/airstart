@@ -1,0 +1,71 @@
+/**
+	@include wrapper();
+	@include row();
+	@include col(6);
+	@include col(5, lg);
+	@include offset(1, lg);
+*/
+
+@mixin wrapper(){
+    @include make-container();
+    @include make-container-max-widths();
+
+    @each $breakpoint, $gutter in $offset-widths{
+        @include media-breakpoint-up($breakpoint) {
+            padding-right: $gutter / 2;
+            padding-left: $gutter / 2;
+        }
+    }
+}
+
+@mixin wrapper-fluid(){
+    @include make-container();
+
+    @each $breakpoint, $gutter in $offset-widths{
+        @include media-breakpoint-up($breakpoint) {
+            padding-right: $gutter / 2;
+            padding-left: $gutter / 2;
+        }
+    }
+}
+
+@mixin row(){
+    @include make-row();
+
+    @each $breakpoint, $gutter in $offset-widths{
+        @include media-breakpoint-up($breakpoint) {
+            margin-right: -$gutter / 2;
+            margin-left: -$gutter / 2;
+        }
+    }
+}
+
+@mixin col($size, $breakpoint: false){
+    @if $breakpoint == false{
+        @include make-col-ready();
+        @include make-col($size);
+
+        @each $breakpoint, $gutter in $offset-widths{
+            @include media-breakpoint-up($breakpoint) {
+                padding-right: $gutter / 2;
+                padding-left: $gutter / 2;
+            }
+        }
+    }
+    @else{
+        @include media-breakpoint-up($breakpoint){
+            @include make-col($size);
+        }
+    }
+}
+
+@mixin offset($size, $breakpoint: false){
+    @if $breakpoint == false{
+        @include make-col-offset($size);
+    }
+    @else{
+        @include media-breakpoint-up($breakpoint){
+            @include make-col-offset($size);
+        }
+    }
+}

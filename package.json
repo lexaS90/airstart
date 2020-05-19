@@ -1,0 +1,52 @@
+{
+  "name": "startGulpWebpack",
+  "version": "1.0.0",
+  "description": "Starting template",
+  "scripts": {
+    "dev": "gulp",
+    "product": "npm run dev -- --production",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "blockAdd": "node createBlock.js"
+  },
+  "author": "Stupakov Alexy",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "browser-sync": "^2.26.7",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.0",
+    "gulp-csso": "^4.0.1",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-imagemin": "^6.2.0",
+    "gulp-load-plugins": "^2.0.1",
+    "gulp-newer": "^1.4.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-pug": "^4.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sass-glob": "^1.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "gulp-util": "^3.0.8",
+    "gulp-webp": "^4.0.1",
+    "imagemin-pngquant": "^8.0.0",
+    "webpack": "^4.41.2",
+    "webpack-stream": "^5.2.1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "inputmask": "^5.0.0",
+    "jquery": "^3.4.1",
+    "modal-vanilla": "^0.7.0",
+    "popper.js": "^1.16.0",
+    "pristinejs": "^0.1.6"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}

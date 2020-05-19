@@ -1,0 +1,44 @@
+/*
+ * Fonts
+ */
+
+$font-family-base: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-accent: 'BerlingskeSerif';
+$line-height-base: 1.3;
+$body-color: #333;
+
+/*
+ * Color
+ */
+
+$primary: #ccaa11;
+$secondary: #eb3535;
+
+/*
+ * Grid
+ */
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
+
+$grid-columns: 12;
+$grid-gutter-width: 30px;
+
+$offset-widths: (
+		xs: 4px,
+		sm: 30px,
+);
+
+$enable-grid-classes: true;
