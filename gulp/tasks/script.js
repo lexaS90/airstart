@@ -20,20 +20,18 @@ if(getMod() == 'prod'){
 	});
 }
 
-module.exports = function () {	
-	$.gulp.task('script', function() {
-			return $.gulp.src($.path.src.script)
-			.pipe($.gp.plumber())	
-			.pipe($.webpackStream(webpackConf, $.webpack))
-				.on('error', $.gp.notify.onError(
-          {
-              title: 'Scripts',
-          }
-      	))
-				.pipe(getMod() == 'prod' ? $.gulp.dest($.path.dist.script) : $.gp.util.noop())
-				.pipe(getMod() == 'prod' ? $.gp.uglify() : $.gp.util.noop())
-				.pipe($.gp.rename({ suffix: '.min' }))
-				.pipe($.gulp.dest($.path.dist.script))
-				.pipe($.browserSync.reload({stream: true}))
-	});
+module.exports = function script(){
+	return $.gulp.src($.path.src.script)
+		.pipe($.gp.plumber())	
+		.pipe($.webpackStream(webpackConf, $.webpack))
+			.on('error', $.gp.notify.onError(
+				{
+						title: 'Scripts',
+				}
+			))
+			.pipe(getMod() == 'prod' ? $.gulp.dest($.path.dist.script) : $.gp.util.noop())
+			.pipe(getMod() == 'prod' ? $.gp.uglify() : $.gp.util.noop())
+			.pipe($.gp.rename({ suffix: '.min' }))
+			.pipe($.gulp.dest($.path.dist.script))
+			.pipe($.browserSync.reload({stream: true}))
 }

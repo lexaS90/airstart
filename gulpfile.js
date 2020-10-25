@@ -16,6 +16,9 @@ global.$ = {
 		webpack: require('webpack'),
 		pngquant: require('imagemin-pngquant'),
 		del: require('del'),
+		imageminJpegRecompress: require('imagemin-jpeg-recompress'),
+		webpHTML: require('gulp-webp-html'),
+		nunjucks: require('gulp-nunjucks')
 }
 
 /**
@@ -30,10 +33,12 @@ global.getMod = function(){
  */
 $.path.src.html[0] = $.path.src.srcPath + $.path.src.html[0];
 $.path.dist.html = $.path.dist.distPath + $.path.dist.html;
-$.path.src.html.push( "!" + $.path.src.html[0].slice(0, -5) + "_*.pug" );
+$.path.src.html.push( "!" + $.path.src.html[0].slice(0, -6) + "_*.html" );
+$.path.src.html.push( "!" + $.path.src.srcPath + "/assets" );
+$.path.src.html.push( "!" + $.path.src.srcPath + "/_html" );
 $.path.watch.html = [
     $.path.src.html[0],
-    $.path.src.srcPath + $.path.src.blocksDirName + '/**/*.pug'
+    $.path.src.srcPath + $.path.src.blocksDirName + '/**/*.html'
 ];
 
 /**
@@ -76,29 +81,54 @@ $.path.watch.font = [
 /**
  * Подключение тасков
  */
-$.path.task = require('./gulp/paths/tasks.js');
-$.path.task.forEach(function(taskPath) {
-    require(taskPath)();
-});
+
+const taskPaths = {
+	//'pug': './gulp/tasks/pug',
+	'serve': './gulp/tasks/serve',
+	'watch': './gulp/tasks/watch',
+	'clean': './gulp/tasks/clean',
+	'scss': './gulp/tasks/scss',
+	'script': './gulp/tasks/script',
+	'image_min': './gulp/tasks/image_min',
+	'webp': './gulp/tasks/webp',
+	'njk': './gulp/tasks/njk'
+}
+
+const tasks = {};
+for (let item in taskPaths) {
+	tasks[item] = require(taskPaths[item]);
+	exports[item] = tasks[item];
+}
+
+/**
+ * Общий таск для изображений
+ */
+
+exports.image = tasks['image'] = $.gulp.series(tasks['image_min'], tasks['webp'], (done) => {$.browserSync.reload(); done();});
+
+/**
+ * Глобальный массив тасков
+ */
+global.$.tasks = tasks;
 
 /**
  * Запуск тасков
  */
 
-$.gulp.task('default', $.gulp.series(
-   	
-		$.gulp.parallel(
-			'clean',
-		),
-		$.gulp.parallel(
-        'scss',
-				'pug',
-				'script',
-				'image',
-				'font'
-    ), 
-    $.gulp.parallel(
-        'watch',
-        'serve'
-    )
-));
+exports.default = $.gulp.series(
+
+	$.gulp.parallel(
+		tasks['clean'],
+	),
+	$.gulp.parallel(
+			tasks['scss'],
+			tasks['njk'],
+			tasks['script'],
+			tasks['image'],
+			//'font'
+	), 
+	$.gulp.parallel(
+		tasks['serve'],
+		tasks['watch']
+	)
+);
