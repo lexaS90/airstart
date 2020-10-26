@@ -3,6 +3,7 @@
  */
 global.projectConfig = require('./projectConfig.json');
 
+
 /**
  * Глобальные переменные
  */
@@ -31,6 +32,7 @@ global.getMod = function(){
 /**
  * Настройка путей для html
  */
+$.path.watch = {};
 $.path.src.html[0] = $.path.src.srcPath + $.path.src.html[0];
 $.path.dist.html = $.path.dist.distPath + $.path.dist.html;
 $.path.src.html.push( "!" + $.path.src.html[0].slice(0, -6) + "_*.html" );
@@ -73,17 +75,18 @@ $.path.watch.image = [
  * Настройка путей для шрифтов
  */
 $.path.src.font[0] = $.path.src.srcPath + $.path.src.font[0];
+$.path.src.font.push("!" + $.path.src.font[0].slice(0, -6) + "src/*.*");
 $.path.dist.font = $.path.dist.distPath + $.path.dist.font;
 $.path.watch.font = [
-	$.path.src.font[0]
+	$.path.src.font[0],
 ];
+$.path.watch.font.push("!" + $.path.src.font[0].slice(0, -6) + "src/*.*");
 
 /**
  * Подключение тасков
  */
 
 const taskPaths = {
-	//'pug': './gulp/tasks/pug',
 	'serve': './gulp/tasks/serve',
 	'watch': './gulp/tasks/watch',
 	'clean': './gulp/tasks/clean',
@@ -91,7 +94,11 @@ const taskPaths = {
 	'script': './gulp/tasks/script',
 	'image_min': './gulp/tasks/image_min',
 	'webp': './gulp/tasks/webp',
-	'njk': './gulp/tasks/njk'
+	'njk': './gulp/tasks/njk',
+	'ttf2woff': './gulp/tasks/ttf2woff',
+	'ttf2woff2': './gulp/tasks/ttf2woff2',
+	'otf2ttf': './gulp/tasks/otf2ttf',
+	'font': './gulp/tasks/font',
 }
 
 const tasks = {};
@@ -103,8 +110,13 @@ for (let item in taskPaths) {
 /**
  * Общий таск для изображений
  */
-
 exports.image = tasks['image'] = $.gulp.series(tasks['image_min'], tasks['webp'], (done) => {$.browserSync.reload(); done();});
+
+/**
+ * Генерация шрифтов
+ */
+exports.fonts_generate = tasks['fonts_generate'] = $.gulp.series(tasks['otf2ttf'], $.gulp.parallel(tasks['ttf2woff'], tasks['ttf2woff2']));
+
 
 /**
  * Глобальный массив тасков
@@ -125,7 +137,7 @@ exports.default = $.gulp.series(
 			tasks['njk'],
 			tasks['script'],
 			tasks['image'],
-			//'font'
+			tasks['font'],
 	), 
 	$.gulp.parallel(
 		tasks['serve'],

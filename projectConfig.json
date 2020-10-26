@@ -27,7 +27,6 @@
 						"script": "/assets/js/",
 						"image": "/assets/img/",
 						"font": "/assets/fonts/"
-        },
-        "watch": {}
+        }
     }
 }

@@ -7,6 +7,4 @@
 // 800 Black or Extra Bold or Heavy;
 // 900 Extra Black or Fat or Ultra Black
 
-@include font-face('Lato', '../fonts/Lato/LatoRegular/LatoRegular', null, null, ttf woff eot);
-@include font-face('Lato', '../fonts/Lato/LatoBold/LatoBold', bold, null, ttf woff eot);
-@include font-face('Lato', '../fonts/Lato/LatoLight/LatoLight', 300, null, ttf woff eot);
+@include font-face('Lobster', '../fonts/Lobster-Regular', null, null, woff2 woff);
