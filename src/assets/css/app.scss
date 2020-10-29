@@ -15,3 +15,7 @@
 @import "_base/default";
 @import "_base/fonts";
 @import "_base/custom";
+
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
