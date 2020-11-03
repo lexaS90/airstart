@@ -19,7 +19,8 @@ global.$ = {
 		del: require('del'),
 		imageminJpegRecompress: require('imagemin-jpeg-recompress'),
 		webpHTML: require('gulp-webp-html'),
-		nunjucks: require('gulp-nunjucks')
+		nunjucks: require('gulp-nunjucks'),
+		svgSprite: require('gulp-svg-sprite')
 }
 
 /**
@@ -60,16 +61,19 @@ $.path.src.script[0] = $.path.src.srcPath + $.path.src.script[0];
 $.path.dist.script = $.path.dist.distPath + $.path.dist.script;
 $.path.watch.script = [
 	$.path.src.script[0].replace( $.path.src.script[0].split('/').pop(), '**/*.js' ),
+	$.path.src.srcPath + $.path.src.blocksDirName + '/**/*.js'
 ];
 
 /**
  * Настройка путей для изображений
  */
 $.path.src.image[0] = $.path.src.srcPath + $.path.src.image[0];
+$.path.src.image.push("!" + $.path.src.image[0].slice(0, -6) + "svgIcons/*.svg");
 $.path.dist.image = $.path.dist.distPath + $.path.dist.image;
 $.path.watch.image = [
 	$.path.src.image[0]
 ];
+$.path.watch.image.push("!" + $.path.src.image[0].slice(0, -6) + "svgIcons/*.svg");
 
 /**
  * Настройка путей для шрифтов
@@ -99,6 +103,7 @@ const taskPaths = {
 	'ttf2woff2': './gulp/tasks/ttf2woff2',
 	'otf2ttf': './gulp/tasks/otf2ttf',
 	'font': './gulp/tasks/font',
+	'svgsprite': './gulp/tasks/svgsprite',
 }
 
 const tasks = {};
@@ -131,6 +136,7 @@ exports.default = $.gulp.series(
 
 	$.gulp.parallel(
 		tasks['clean'],
+		tasks['svgsprite'],
 	),
 	$.gulp.parallel(
 			tasks['scss'],

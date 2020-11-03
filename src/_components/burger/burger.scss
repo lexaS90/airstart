@@ -1,0 +1,21 @@
+@import "../../../node_modules/sass-burger/burger";
+
+.burger{
+	
+}
+
+.burger__btn{
+	border: none;
+	background-color: transparent;
+}
+
+.burger__icon{
+	@include burger(30px, 2px, 5px, #fff);
+	border: none;
+}
+
+.burger.active{
+	.burger__icon{
+		@include burger-to-cross;
+	}
+}

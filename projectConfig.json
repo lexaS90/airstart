@@ -3,7 +3,7 @@
     "path": {
         "src": {
             "srcPath": "./src",
-            "blocksDirName": "/blocks",
+            "blocksDirName": "/_components",
             "html": [
               "/**/*.html"
             ],

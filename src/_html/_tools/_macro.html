@@ -11,3 +11,9 @@
 	</picture>
 
 {% endmacro %}
+
+{% macro svgIcon(icon, class = '', path = 'assets/img/site/sprite.svg') %}
+	<svg class="svg-icon {{ class }}">
+	  <use xlink:href="{{path}}#{{ icon }}"></use>
+	</svg>
+{% endmacro %}

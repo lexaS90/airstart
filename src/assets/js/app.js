@@ -1,5 +1,8 @@
 import 'focus-visible';
 
+import Burger from '../../_components/burger/burger.js';
+new Burger(document.querySelector('#menuToggle'));
+
 // import lazy from './_tools/lazy';
 // lazy();
 
@@ -24,9 +27,6 @@ import 'focus-visible';
 // 	}
 
 // });
-
-import Mp from '../../_components/magnific-popup/magnific-popup';
-Mp();
 
 
 document.addEventListener('DOMContentLoaded', function() {
