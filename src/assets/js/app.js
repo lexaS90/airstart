@@ -1,7 +1,7 @@
 import 'focus-visible';
 
-import Burger from '../../_components/burger/burger.js';
-new Burger(document.querySelector('#menuToggle'));
+import MobileMenu from '../../_components/mobile-menu/mobile-menu';
+new MobileMenu();
 
 // import lazy from './_tools/lazy';
 // lazy();

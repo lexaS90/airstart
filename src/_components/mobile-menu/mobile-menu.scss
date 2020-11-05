@@ -1,0 +1,8 @@
+@import "../../../node_modules/mmenu-js/dist/mmenu";
+
+// mobile-menu
+.mobile-menu{
+	&:not(.mm-menu_opened){
+		display: none;
+	}
+}

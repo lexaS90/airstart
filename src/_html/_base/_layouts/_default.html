@@ -19,7 +19,27 @@
 
 		<body {% if bodyClass %}class="{{ bodyClass }}"{% endif %}>
 			
-			<div class="page-wrapper">
+			<nav id="mobileMenu" class="mobile-menu">				
+				<ul>
+					<li>
+						<a href="">Главная</a>
+					</li>
+					<li>
+						<a href="">Статьи</a>
+					</li>
+					<li>
+						<a href="">Шаблы</a>
+					</li>
+					<li>
+						<a href="">Новости</a>					
+					</li>
+					<li>
+						<a href="">Контакты</a>						
+					</li>
+				</ul>
+			</nav>
+			
+			<div class="page-wrapper" id="pageWrapper">
 				{% include "../_includes/_header.html" %}
 
 				{% block content %}{% endblock %}				
