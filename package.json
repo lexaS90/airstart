@@ -13,7 +13,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
-    "babel-loader": "^8.0.6",
+    "babel-loader": "^8.3.0",
     "browser-sync": "^2.26.7",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
@@ -41,8 +41,8 @@
     "gulp-webp-html": "^1.0.2",
     "imagemin-jpeg-recompress": "^7.0.0",
     "imagemin-pngquant": "^9.0.1",
-    "webpack": "^4.41.2",
-    "webpack-stream": "^6.1.0"
+    "webpack": "^5.75.0",
+    "webpack-stream": "^7.0.0"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
